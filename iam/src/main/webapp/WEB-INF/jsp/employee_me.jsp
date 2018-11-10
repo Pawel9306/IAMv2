@@ -83,6 +83,7 @@
              <!-- Page Content Holder -->
  <div id="content" style="display: flex">
  
+ 
  	<div class="col-5">
  		<c:set value="${employeeObject2 }" var="employee" />
    		<table style="min-width:100%">
@@ -159,9 +160,19 @@
  	<div class="box-1">
 
 	 	<table>
-	 	<tr>
-	 	<td><a href="">Edytuj atrybuty konta</a></td>
-	 	</tr>
+		 	<tr>
+		 	<td><a href="">Edytuj atrybuty konta</a></td>
+		 	</tr>
+	 	
+		 	<tr>
+		 	<td><a href="">Nowy wniosek</a></td>
+		 	</tr>
+		 	
+		 	<tr>
+		 	<td><a href="">Sprawdź status wniosku</a></td>
+		 	</tr>
+		 	
+			<p>Envelope icon: <span class="glyphicon glyphicon-envelope"></span></p>
 	 	
 	 	</table>
  	</div>
