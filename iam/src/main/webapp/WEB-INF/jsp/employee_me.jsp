@@ -15,6 +15,7 @@
  <link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
  <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
  <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <!-- Our Custom CSS -->
@@ -159,21 +160,27 @@
  
  	<div class="box-1">
 
-	 	<table>
+	 	<table class="table-glyphicon">
 		 	<tr>
-		 	<td><a href="">Edytuj atrybuty konta</a></td>
+		 	<td class="glyphicon-1"><a href="#"><span class="glyphicon glyphicon-edit"></span></a></td>
+		 	<td><a href="#">Edytuj atrybuty konta234</a></td>
 		 	</tr>
 	 	
 		 	<tr>
-		 	<td><a href="">Nowy wniosek</a></td>
+		 	<td class="glyphicon-1"><a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a></td>
+		 	<td><a href="#">Nowy wniosek</a></td>
 		 	</tr>
 		 	
 		 	<tr>
-		 	<td><a href="">Sprawdź status wniosku</a></td>
+		 	<td class="glyphicon-1"><a href="#"><span class="glyphicon glyphicon-check"></span></a></td>
+		 	<td><a href="#">Sprawdź status wniosku</a></td>
 		 	</tr>
 		 	
-			<p>Envelope icon: <span class="glyphicon glyphicon-envelope"></span></p>
-	 	
+		 	<tr>
+		 	<td class="glyphicon-1"><a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a></td>
+		 	<td><a href="#">Lista dostępów</a></td>
+		 	</tr>
+
 	 	</table>
  	</div>
  
