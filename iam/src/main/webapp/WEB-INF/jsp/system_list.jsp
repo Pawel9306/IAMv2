@@ -4,8 +4,11 @@
     response.setCharacterEncoding("UTF-8");
     request.setCharacterEncoding("UTF-8");
 %>
+ 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>   
+
+    
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,6 +18,9 @@
  <link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
  <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
  <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
+ <!-- Bootstrap Components -->
+ <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 
  <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <!-- Our Custom CSS -->
@@ -88,6 +94,7 @@
 		    <th scope="row"></th>
 		    <th scope="row"></th>
 		    <th scope="row"></th>
+		    <th scope="row"></th>
 		   </thead>
 		   <tbody>
 		    <c:forEach items="${systemList }" var="system" >
@@ -95,17 +102,20 @@
 		    <td>${system.systemName}</td>
 		    <td>${system.description}</td>
 		    <td>${system.groupName}</td>
+		    
 		    <td>
-		       <spring:url value="/employee/deleteEmployee/${employee.employeeId }" var="deleteURL" />
+		    	<div sec:authorize="hasRole('ROLE_ADMIN')">
+		       <spring:url value="/employee/deleteSystem/${system.sysId }" var="deleteURL" />
 		       <a class="btn btn-primary" href="${deleteURL }" role="button" >Usuń</a>
+		    	</div>
 		    </td>
 		    <td>
 		       <spring:url value="/employee/updateSystem/${system.sysId }" var="updateURL" />
-		       <a class="btn btn-primary" href="${updateURL }" role="button" >Update</a>
+		       <a class="btn btn-primary" href="${updateURL }" role="button" >Aktualizuj</a>
 		    </td>
 		    <td>
-		       <spring:url value="/employee/deleteSystem/${system.sysId }" var="deleteURL" />
-		       <a class="btn btn-primary" href="${deleteURL }" role="button" >Delete</a>
+		       <spring:url value="/employee/accessSystem/${system.sysId }" var="accessURL" />
+		       <a class="btn btn-primary" href="${accessURL }" role="button" >Wnioskuj</a>
 		    </td>
 		     </tr>
 		    </c:forEach>

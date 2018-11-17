@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.model.Employee;
 import com.project.model.System;
+import com.project.model.User;
 import com.project.service.EmployeeService;
 import com.project.service.SystemService;
 import com.project.service.UserService;
@@ -63,6 +64,7 @@ public class EmployeeController {
 	    view5.setViewName("hello");
 	    return view5;
      }
+		
 	
  //Zarządzanie pracownikami
 	
@@ -90,9 +92,32 @@ public class EmployeeController {
  public ModelAndView account(Principal principal) {
 	 ModelAndView model =new ModelAndView();
 	 String userName=principal.getName();
-	 model.addObject("employeeObject",userService.findByUserName(userName));
-	 model.addObject("employeeObject2",employeeService.getEmployeeById(userService.findByUserName(userName).getUserid()));
+	 model.addObject("employeeForm",employeeService.getEmployeeById(userService.findByUserName(userName).getUserid()));
 	 model.setViewName("employee_me");
+	 return model;
+ }
+ 
+ @RequestMapping("/account/edit")
+ public ModelAndView accountEdit(Principal principal) {
+	 ModelAndView model =new ModelAndView();
+	 String userName=principal.getName();
+	 model.addObject("employeeForm",employeeService.getEmployeeById(userService.findByUserName(userName).getUserid()));
+	 model.setViewName("employee_me_edit");
+	 return model;
+ }
+ 
+ @RequestMapping("/accout/edit/password")
+ public ModelAndView accountEditPassword(Principal principal) {
+	 ModelAndView model =new ModelAndView();
+	 String userName=principal.getName();
+	 User userOld=userService.findByUserName(userName);
+	 User userNew=new User();
+	 userNew.setUserid(userOld.getUserid());
+	 userNew.setUserName(userOld.getUserName());
+	 userNew.setEnabled(userOld.getEnabled());
+	 model.addObject("userOldObject",userOld);
+	 model.addObject("userNewObject",userNew);
+	 model.setViewName("employee_me_edit_password");
 	 return model;
  }
  
@@ -101,7 +126,7 @@ public class EmployeeController {
 	 ModelAndView model=new ModelAndView();
 	 
 	 //Employee employee = employeeService.getEmployeeById(employeeId);
-	 model.addObject("employeeObject", employee);
+	 model.addObject("employeeForm", employee);
 	 model.setViewName("employee_me");
 	  
 	 return model;	 
@@ -112,7 +137,7 @@ public class EmployeeController {
 	 ModelAndView model=new ModelAndView();
 	 
 	 Employee employee = employeeService.getEmployeeById(employeeId);
-	 model.addObject("employeeObject", employee);
+	 model.addObject("employeeForm", employee);
 	 model.setViewName("employee_me");
 	  
 	 return model;	 
@@ -123,7 +148,7 @@ public class EmployeeController {
 	 ModelAndView model=new ModelAndView();
 	 
 	 Employee employee = employeeService.getEmployeeById(employeeId);
-	 model.addObject("employeeObject", employee);
+	 model.addObject("employeeForm", employee);
 	 model.setViewName("employee_info");
 	  
 	 return model;	 
@@ -203,6 +228,21 @@ public class EmployeeController {
   return new ModelAndView("redirect:/employee/systemList");
  }
  
+ 
+ @RequestMapping(value="/accessSystem/{sysId}", method=RequestMethod.GET)
+ public ModelAndView accessSystem(Principal principal, @PathVariable("sysId") int sysId) {
+	 ModelAndView model =new ModelAndView();
+	 String userName=principal.getName();
+	 model.addObject("employeeForm",employeeService.getEmployeeById(userService.findByUserName(userName).getUserid()));
+	 model.addObject("systemForm",systemService.getSystemById(sysId));
+	 model.setViewName("access_system");
+	 return model;
+ }
 
+ @RequestMapping(value="/accessSubmit", method=RequestMethod.POST)
+ public ModelAndView saveAcces() {
+  
+  return new ModelAndView("redirect:/employee/systemList");
+ }
  
 }

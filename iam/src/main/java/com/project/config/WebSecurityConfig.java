@@ -19,6 +19,8 @@ import com.project.security.CustomUserDetailsService;
 @ComponentScan(basePackageClasses = CustomUserDetailsService.class)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	
+
  @Autowired 
  private UserDetailsService userDetailsService;
  

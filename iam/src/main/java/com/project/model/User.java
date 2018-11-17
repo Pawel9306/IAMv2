@@ -23,7 +23,7 @@ public class User implements Serializable {
 	private String password;
 	@Column(name="enabled")	
 	private short enabled;
-	
+
 	public User(){
 	
 	}
@@ -34,7 +34,7 @@ public class User implements Serializable {
 		this.password = user.password;
 		this.enabled=user.enabled;
 	}
-	
+
 	public int getUserid() {
 		return userId;
 	}

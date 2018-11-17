@@ -5,7 +5,8 @@
     request.setCharacterEncoding("UTF-8");
 %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>     
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,6 +16,9 @@
  <link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
  <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
  <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
+ <!-- Bootstrap Components -->
+ <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 
  <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <!-- Our Custom CSS -->
@@ -86,24 +90,35 @@
    
    <table>
    		<tr>
-   		<td><label>Nazwa</label></td>
+   		<td><label>Nazwa:</label></td>
    		<td><form:input type="text" path="systemName" cssClass="form-control" id="systemName" pattern="{2,}" title="Podaj nazwę systemu" required="required"/></td>
 		</tr>  		
    		
    		<tr>
-   		<td><label>Opis</label></td>
+   		<td><label>Opis:</label></td>
    		<td><form:textarea path="description" cssClass="form-control" id="description" title="Podaj opis systemu" /></td>
    		</tr>
    		
         <tr>
-        <td><label>Nazwa grupy</label></td>
+        <td><label>Nazwa grupy roboczej:</label></td>
         <td><form:input path="groupName" cssClass="form-control" id="groupName" title="Podaj nazwę grupy systemów" required="required"/></td>
-        </tr>
-        
-        <tr>
-   		<td><button type="reset" class="btn btn-primary">Wyczyść dane</button></td>
-   		<td><button type="submit" class="btn btn-primary">Dodaj system</button></td>
-   		</tr>	
+        </tr>	
+   		
+   		<c:choose>
+   		<c:when test="${systemForm.systemName eq null}">
+   			<tr>
+	   		<td><button type="reset" class="btn btn-primary">Wyczyść dane</button></td>
+	   		<td><button type="submit"  class="btn btn-primary">Dodaj system</button></td>
+	   		</tr>
+   		</c:when>
+   		<c:otherwise>
+   			<tr>
+	   		<td><button onclick="location.href='/employee/systemList'" class="btn btn-primary">Anuluj</button></td>
+	   		<td><button type="submit" class="btn btn-primary">Potwierdź zmiany</button></td>
+	   		</tr>
+   		</c:otherwise>
+   		</c:choose>
+   		
    	</table>
   </form:form>
   

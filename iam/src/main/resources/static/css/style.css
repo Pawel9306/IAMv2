@@ -256,3 +256,19 @@ a.article, a.article:hover {
 	color:rgb(153, 153, 153);
 	
 }
+
+label{
+	margin-bottom: 0rem;
+	margin-top: .3rem;
+	padding-top: .5rem;
+	padding-right: 1rem;
+}
+.center{
+	margin:1em auto;
+}
+.center td{
+	padding:1em
+}
+.col-5{
+	min-width:30%
+}
