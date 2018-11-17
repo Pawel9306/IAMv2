@@ -36,7 +36,10 @@
 			<input type="submit" class="button red big" value="Wyloguj" /> <input
 				type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
-	    
+	       
+	       
+	       
+	       
                 </div>
 
                 <ul class="list-unstyled components">
