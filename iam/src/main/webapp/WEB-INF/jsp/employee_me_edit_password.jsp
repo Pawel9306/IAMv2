@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -36,10 +35,7 @@
 			<input type="submit" class="button red big" value="Wyloguj" /> <input
 				type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
-	       
-	       
-	       
-	       
+	    
                 </div>
 
                 <ul class="list-unstyled components">
@@ -86,42 +82,38 @@
              <!-- Page Content Holder -->
  <div id="content">
  <div class="col-5" style="margin: 0 auto">
-  <spring:url value="/employee/saveEmployee" var="saveURL" />
-  <h3>Wprowadź dane:</h3>
-  <c:set value="${userOldObject}" var="employee"/>
-  ${employee.getUserid()}
-  ${employee.userName}
-  ${employee.password}
-  ${employee.enabled}
-  <form:form modelAttribute="userNewObject" method="post" action="${saveURL }" cssClass="form-control" >
-   
+  <spring:url value="/employee/saveUser" var="saveURL" />
+  <h3>Wprowadź obecne i nowe hasło:</h3>
+  <c:set value="${userForm}" var="employee"/>
+  <c:set value="${newPassForm}" var="newPass"/>
+
+  <form:form modelAttribute="userForm" name="myForm" method="post" action="${saveURL }" cssClass="form-control" >
+  	<form:hidden path="role"/>
+	<form:hidden path="userId"/>
+	<form:hidden path="userName"/>
+	<form:hidden path="tempPK"/>
+	<form:hidden path="enabled"/>
+	<form:hidden path="password"/>
+ 
   
    	<table>
-   		
+
    		<tr>
-   		<td><label>Id</label></td>
-   		<td>${employee.getUserid()}</td>
+   		<td><label>Obecne hasło:</label></td>
+   		<td><input  id="passwordOld" class="form-control" title="Podaj dotychczasowe hasło" required="required"/></td>
    		</tr>
    		
    		<tr>
-   		<td><label>Obecne hasło</label></td>
-   		<td><form:input path="password" cssClass="form-control" id="password" title="Podaj dotychczasowe hasło" required="required"/></td>
+   		<td><label>Nowe hasło:</label></td>
+   		<td><input  id="passwordNew1" class="form-control" title="Podaj nowe hasło" required="required"/></td>
    		</tr>
    		
    		<tr>
-   		<td><label>Nowe hasło</label></td>
-   		<td><form:input path="password" cssClass="form-control" id="password" title="Podaj nowe hasło" required="required"/></td>
+   		<td><label>Powtórz hasło:</label></td>
+   		<td><input  class="form-control" id="passwordNew2" title="Powtórz nowe hasło" required="required"/></td>
    		</tr>
    		
-   		<tr>
-   		<td><label>Powtórz nowe hasło</label></td>
-   		<td><form:input path="password" cssClass="form-control" id="password" title="Powtórz nowe hasło" required="required"/></td>
-   		</tr>
    		
-   		<tr>
-   		<td><button type="reset" class="btn btn-primary">Anuluj</button></td>
-   		<td><button type="submit" class="btn btn-primary">Zmień hasło</button></td>
-   		</tr>
    		
    		<tr>
    		<td></td>
@@ -131,6 +123,13 @@
    	</table>
 
   </form:form>
+  
+  	<table>
+  	<tr>
+   		<td><button onclick="location.href='/employee/account'" class="btn btn-primary">Anuluj</button></td>
+   		<td><button onclick="check()" class="btn btn-primary">Zmień hasło</button></td>
+   		</tr>
+  	</table>
  
 
   </div>
@@ -147,6 +146,17 @@
                      $('#sidebar').toggleClass('active');
                  });
              });
+
          </script>
+         
+         <script type="text/javascript">
+         function check(){
+        	 
+        	 document.forms['myForm'].submit(); return false;
+         }
+         
+         </script>
+         
+         
 </body>
 </html>

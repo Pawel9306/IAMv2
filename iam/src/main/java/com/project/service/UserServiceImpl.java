@@ -3,6 +3,7 @@ package com.project.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,8 @@ import com.project.repository.UserRepository;
 @Transactional
 public class UserServiceImpl implements UserService {
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 @Autowired
 UserRepository userRepository;
@@ -29,7 +32,17 @@ public User getUserById(int userId) {
 public User findByUserName(String userName) {
 	User user=userRepository.findByUserName(userName);
 	
-	return getUserById(user.getUserid());
+	return getUserById(user.getUserId());
+}
+
+@Override
+public void saveOrUpdate(User user) {
+	 userRepository.save(user);
+}
+
+@Override
+public String passEncoder(String pass) {
+	return passwordEncoder.encode(pass);
 }
  /*
  @Autowired
@@ -45,10 +58,7 @@ public User findByUserName(String userName) {
   return employeeRepository.findById(employeeId).get();
  }
 
- @Override
- public void saveOrUpdate(Employee employee) {
-	 employeeRepository.save(employee);
- }
+
 
  @Override
  public void deleteEmployee(int employeeId) {

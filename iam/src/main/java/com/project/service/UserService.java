@@ -12,6 +12,10 @@ public interface UserService {
  //public List<Employee> getAllEmployees();
 
 	User getUserById(int userId);
+
+	void saveOrUpdate(User user);
+
+	String passEncoder(String pass);
  
  //public Employee getEmployeeById(int employeeId);
  

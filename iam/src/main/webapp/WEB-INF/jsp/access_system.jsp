@@ -81,14 +81,14 @@
 				<c:set value="${employeeForm }" var="employee" />
 				<c:set value="${systemForm }" var="system" />
 				<h3>Wniosek o dostęp do zasobów</h3>
-				<form:form modelAttribute="systemObject" method="post"
+				<form:form modelAttribute="systemForm" method="post"
 					action="${saveURL }" cssClass="form">
 
 					<table>
 
 						<tr class="bold">
 							<td>Użytkownik:</td>
-							<td class="alert">${employee.firstName}${employee.lastName}</td>
+							<td class="alert">${employee.firstName} ${employee.lastName}</td>
 						</tr>
 
 						<tr class="bold">
